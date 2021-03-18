@@ -2,11 +2,11 @@
 void PrintIntroduction()
 {
      // Expression Statements - Game introduction for player
-    std::cout << "The codes, punch them in Agent! We are all riding on you now." << std::endl;
-    std::cout << "You must enter the correct codes to continue, or all will be lost.. " << std::endl;
+    std::cout << "\n\nThe codes, punch them in Agent! We are all riding on you now." << std::endl;
+    std::cout << "You must enter the correct codes to continue, or all will be lost..\n\n " << std::endl;
 }
 
-void PlayGame()
+bool PlayGame()
 {
     PrintIntroduction();
 
@@ -35,15 +35,24 @@ void PlayGame()
     if(GuessSum == CodeSum & GuessProduct == CodeProduct) 
     {
         std::cout << "Your Guesses are correct!\n";
+        return true;
     } 
     else 
     {
         std::cout << "All is lost..\n";
+        return false;
     }
 }
 
 int main()
 {
-    PlayGame();
+    while(true)
+    {
+
+        bool bLevelComplete =  PlayGame();
+        std::cin.clear();
+        std::cin.ignore();
+    }
+    
     return 0;
 }
