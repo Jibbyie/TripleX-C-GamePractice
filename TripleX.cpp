@@ -1,14 +1,14 @@
 #include <iostream>
-void PrintIntroduction()
+void PrintIntroduction(int Difficulty)
 {
      // Expression Statements - Game introduction for player
-    std::cout << "\n\nThe codes, punch them in Agent! We are all riding on you now." << std::endl;
-    std::cout << "You must enter the correct codes to continue, or all will be lost..\n\n " << std::endl;
+    std::cout << "\n\nThe codes, punch them in Agent! We are all riding on you now. Level " << Difficulty << std::endl;
+    std::cout << "secure server room.. You must enter the correct codes to continue, or all will be lost..\n\n " << std::endl;
 }
 
-bool PlayGame()
+bool PlayGame(int Difficulty)
 {
-    PrintIntroduction();
+    PrintIntroduction(Difficulty);
 
     // Declaration Statements - Codes needed for player to enter
     const int CodeA = 4;
@@ -46,12 +46,19 @@ bool PlayGame()
 
 int main()
 {
+
+    int levelDifficulty = 1;
     while(true)
     {
 
-        bool bLevelComplete =  PlayGame();
+        bool bLevelComplete =  PlayGame(levelDifficulty);
         std::cin.clear();
         std::cin.ignore();
+
+        if(bLevelComplete)
+        {
+            levelDifficulty++;
+        }
     }
     
     return 0;
