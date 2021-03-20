@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 void PrintIntroduction(int Difficulty)
 {
      // Expression Statements - Game introduction for player
@@ -11,9 +12,9 @@ bool PlayGame(int Difficulty)
     PrintIntroduction(Difficulty);
 
     // Declaration Statements - Codes needed for player to enter
-    const int CodeA = 4;
-    const int CodeB = 3;
-    const int CodeC = 5;
+    const int CodeA = rand() % Difficulty + Difficulty;
+    const int CodeB = rand() % Difficulty + Difficulty;
+    const int CodeC = rand() % Difficulty + Difficulty;
 
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
@@ -34,26 +35,29 @@ bool PlayGame(int Difficulty)
     // Check Player Guess 
     if(GuessSum == CodeSum & GuessProduct == CodeProduct) 
     {
-        std::cout << "Your Guesses are correct!\n";
+        std::cout << "Excellent Agent! Keep going!\n";
         return true;
     } 
     else 
     {
-        std::cout << "All is lost..\n";
+        std::cout << "All is lost.. Or is it? You have one more chance Agent! Keep Going!\n";
         return false;
     }
 }
 
 int main()
 {
+    srand(time(NULL));
 
     int levelDifficulty = 1;
-    while(true)
+    const int MaxDifficulty = 5;
+
+    while(levelDifficulty <= MaxDifficulty) // Loop game until all levels completed
     {
 
         bool bLevelComplete =  PlayGame(levelDifficulty);
-        std::cin.clear();
-        std::cin.ignore();
+        std::cin.clear(); // Clears errors
+        std::cin.ignore(); // Discards buffer
 
         if(bLevelComplete)
         {
@@ -61,5 +65,6 @@ int main()
         }
     }
     
+    std::cout << "Congratulations! You've escaped the facility and saved the world!";
     return 0;
 }
